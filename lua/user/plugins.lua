@@ -46,6 +46,7 @@ return packer.startup(function(use)
 	use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
 	use({ "numToStr/Comment.nvim" })
 	use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
+	use({ "windwp/nvim-ts-autotag" })
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
 	-- Colorschemes
@@ -65,6 +66,10 @@ return packer.startup(function(use)
 	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua" })
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "v2.*",
+	})
 
 	-- NVimtree
 	use {

@@ -5,7 +5,7 @@ end
 
 mason.setup({
     ui = {
-        border = "rounded",
+        border = "double",
         icons = {
             package_installed = "✓",
             package_pending = "➜",
@@ -36,6 +36,12 @@ mason_lspconfig.setup_handlers({
 			vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
 		)
 	end,
+	["tsserver"] = function ()
+		local tsserver_opts = require("user.lsp.settings.tsserver")
+		require("lspconfig").tsserver.setup(
+			vim.tbl_deep_extend("force", tsserver_opts, opts)
+		)
+	end
     --[[ ["rust_analyzer"] = function ()  ]]
     --[[     require("rust-tools").setup {} ]]
     --[[ end ]]

@@ -37,7 +37,8 @@ keymap("n", "<leader>p", "<cmd>Telescope help_tags<cr>", opts)
 keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
 
 -- Spawn terminal
-keymap("n", "<C-\\>", ":! bash -c st &<CR>", opts)
+-- keymap("n", "<C-\\>", ":! bash -c st &<CR>", opts)
+keymap("n", "<leader>\\", ":ToggleTermToggleAll<CR>", opts)
 
 -- Formatting
 keymap("n", "<C-_>", ":Format<cr>", opts)

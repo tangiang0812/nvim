@@ -15,5 +15,7 @@ vim.opt.updatetime = 300
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.list = true
+vim.opt.wrap = false
+vim.opt.autoindent = true
 --[[ vim.opt.listchars:append "eol:↴" ]]
 vim.opt.listchars:append "tab:│ "

@@ -13,6 +13,7 @@ telescope.setup {
 		path_display = { "smart" },
 		layout_config = {
 			prompt_position = "top",
+			scroll_speed = 1,
 		},
 		sorting_strategy = "ascending",
 
@@ -34,8 +35,8 @@ telescope.setup {
 				["<C-v>"] = actions.select_vertical,
 				["<C-t>"] = actions.select_tab,
 
-				["<C-u>"] = actions.preview_scrolling_up,
-				["<C-d>"] = actions.preview_scrolling_down,
+				["<C-b>"] = actions.preview_scrolling_up,
+				["<C-f>"] = actions.preview_scrolling_down,
 
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,
@@ -71,8 +72,8 @@ telescope.setup {
 				["gg"] = actions.move_to_top,
 				["G"] = actions.move_to_bottom,
 
-				["<C-u>"] = actions.preview_scrolling_up,
-				["<C-d>"] = actions.preview_scrolling_down,
+				["<C-b>"] = actions.preview_scrolling_up,
+				["<C-f>"] = actions.preview_scrolling_down,
 
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,

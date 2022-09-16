@@ -48,6 +48,7 @@ return packer.startup(function(use)
 	use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
 	use({ "windwp/nvim-ts-autotag" })
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+	use({ "kyazdani42/nvim-web-devicons" })
 
 	-- Colorschemes
 	-- use({ "marko-cerovac/material.nvim" })
@@ -66,6 +67,7 @@ return packer.startup(function(use)
 	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua" })
+	use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "v2.*",
@@ -97,12 +99,13 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
+	use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
 	-- Git
-	use({"lewis6991/gitsigns.nvim"})
+	use({ "lewis6991/gitsigns.nvim" })
 
 	-- Dashboard
-	use({'glepnir/dashboard-nvim'})
+	use({ 'glepnir/dashboard-nvim' })
 
 	-- Tabline
 	--[[ use { ]]

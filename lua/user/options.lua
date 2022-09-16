@@ -17,5 +17,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.list = true
 vim.opt.wrap = false
 vim.opt.autoindent = true
---[[ vim.opt.listchars:append "eol:↴" ]]
+vim.opt.smartindent = false
+vim.opt.listchars:append "eol:↴"
 vim.opt.listchars:append "tab:│ "

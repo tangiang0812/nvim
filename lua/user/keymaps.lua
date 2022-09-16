@@ -41,7 +41,7 @@ keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
 keymap("n", "<leader>\\", ":ToggleTermToggleAll<CR>", opts)
 
 -- Formatting
-keymap("n", "<C-_>", ":Format<cr>", opts)
+keymap("n", "<C-_>", ":lua vim.lsp.buf.formatting_sync()<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)

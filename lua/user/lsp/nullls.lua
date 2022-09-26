@@ -3,6 +3,8 @@ if not status_ok then
 	return
 end
 
+local on_attach = require("user.lsp.handlers").on_attach
+
 null_ls.setup({
 	debug = false,
 	sources = {
@@ -12,12 +14,5 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 		--[[ null_ls.builtins.diagnostics.mypy, ]]
 	},
-	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
-			vim.api.nvim_command([[augroup Format]])
-			vim.api.nvim_command([[autocmd! * <buffer>]])
-			vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
-			vim.api.nvim_command([[augroup END]])
-		end
-	end,
+	on_attach = on_attach
 })

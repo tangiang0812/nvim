@@ -16,7 +16,7 @@ telescope.setup {
 			scroll_speed = 1,
 		},
 		--[[ sorting_strategy = "ascending", ]]
-		borderchars = { "═", "║", "═", "║", "╔", "╗", "╝", "╚", },
+		--[[ borderchars = { "═", "║", "═", "║", "╔", "╗", "╝", "╚", }, ]]
 
 		mappings = {
 			i = {

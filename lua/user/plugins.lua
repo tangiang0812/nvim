@@ -33,7 +33,7 @@ end
 packer.init({
 	display = {
 		open_fn = function()
-			return require("packer.util").float()
+			return require("packer.util").float({ border = 'rounded' })
 		end,
 	},
 })
@@ -52,7 +52,7 @@ return packer.startup(function(use)
 
 	-- Colorschemes
 	-- use({ "marko-cerovac/material.nvim" })
-	use({ 'folke/tokyonight.nvim' })
+	use({ "folke/tokyonight.nvim" })
 
 	-- Lualine
 	use {
@@ -65,7 +65,7 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
 	use({ "hrsh7th/cmp-path" }) -- path completions
 	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-nvim-lsp", commit = "f93a6cf9761b096ff2c28a4f0defe941a6ffffb5" })
 	use({ "hrsh7th/cmp-nvim-lua" })
 	use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
 	use({
@@ -75,12 +75,18 @@ return packer.startup(function(use)
 
 	-- NVimtree
 	use {
-		'kyazdani42/nvim-tree.lua',
+		"kyazdani42/nvim-tree.lua",
 		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icons
+			"kyazdani42/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = 'nightly' -- optional, updated every week. (see issue #1193)
+		tag = "nightly" -- optional, updated every week. (see issue #1193)
 	}
+
+	-- Debug
+	--[[ use({ ]]
+	--[[ 	"mfussenegger/nvim-dap" ]]
+	--[[ }) ]]
+
 	-- LSP
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "williamboman/mason.nvim" }) -- simple to use language server installer
@@ -99,13 +105,13 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
-	use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	-- Git
 	use({ "lewis6991/gitsigns.nvim" })
 
 	-- Dashboard
-	use({ 'glepnir/dashboard-nvim' })
+	use({ "glepnir/dashboard-nvim" })
 
 	-- Tabline
 	--[[ use { ]]

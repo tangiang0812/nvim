@@ -19,5 +19,6 @@ vim.opt.list = true
 vim.opt.wrap = false
 vim.opt.autoindent = true
 vim.opt.smartindent = false
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.listchars:append "eol:↴"
 vim.opt.listchars:append "tab:│ "

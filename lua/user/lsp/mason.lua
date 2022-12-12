@@ -65,8 +65,9 @@ mason_lspconfig.setup_handlers({
     require("rust-tools").setup({
       server = {
         on_attach = on_attach,
-        --[[ capabilities ]]
+        capabilities = capabilities,
       },
+      dap = require("user.lsp.settings.rust")
     })
   end,
 })

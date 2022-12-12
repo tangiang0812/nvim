@@ -50,6 +50,9 @@ return packer.startup(function(use)
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "kyazdani42/nvim-web-devicons" })
 
+  -- Rust
+  use({ "simrat39/rust-tools.nvim" })
+
   -- Colorschemes
   -- use({ "marko-cerovac/material.nvim" })
   use({ "folke/tokyonight.nvim" })
@@ -66,7 +69,8 @@ return packer.startup(function(use)
   use({ "hrsh7th/cmp-path" }) -- path completions
   use({ "hrsh7th/cmp-cmdline" }) -- path completions
   use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-  use({ "hrsh7th/cmp-nvim-lsp", commit = "f93a6cf9761b096ff2c28a4f0defe941a6ffffb5" })
+  --[[ use({ "hrsh7th/cmp-nvim-lsp", commit = "f93a6cf9761b096ff2c28a4f0defe941a6ffffb5" }) ]]
+  use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-nvim-lua" })
   use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
   use({
@@ -80,7 +84,7 @@ return packer.startup(function(use)
     requires = {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
-    tag = "nightly" -- optional, updated every week. (see issue #1193)
+    --[[ tag = "nightly" -- optional, updated every week. (see issue #1193) ]]
   }
 
   -- Debug
@@ -91,7 +95,8 @@ return packer.startup(function(use)
   -- LSP
   use({ "neovim/nvim-lspconfig" }) -- enable LSP
   use({ "williamboman/mason.nvim" }) -- simple to use language server installer
-  use({ "williamboman/mason-lspconfig.nvim", commit = "3cbd87f0824a88f61b3b8b986fa77428bbad4427" }) -- kind of connect mason and lspconfig
+  --[[ use({ "williamboman/mason-lspconfig.nvim", commit = "3cbd87f0824a88f61b3b8b986fa77428bbad4427" }) -- kind of connect mason and lspconfig ]]
+  use({ "williamboman/mason-lspconfig.nvim" }) -- kind of connect mason and lspconfig
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
 
   -- snippets
@@ -106,7 +111,8 @@ return packer.startup(function(use)
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim" })
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({ 'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
 
   -- Git
   use({ "lewis6991/gitsigns.nvim" })

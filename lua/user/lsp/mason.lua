@@ -21,9 +21,12 @@ end
 
 mason_lspconfig.setup()
 
+local on_attach = require("user.lsp.handlers").on_attach
+local capabilities = require("user.lsp.handlers").capabilities
+
 local opts = {
-  on_attach = require("user.lsp.handlers").on_attach,
-  capabilities = require("user.lsp.handlers").capabilities
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 mason_lspconfig.setup_handlers({
@@ -54,7 +57,16 @@ mason_lspconfig.setup_handlers({
       vim.tbl_deep_extend("force", pyright_opts, opts)
     )
   end,
-  --[[ ["rust_analyzer"] = function ()  ]]
-  --[[     require("rust-tools").setup {} ]]
-  --[[ end ]]
+  ["rust_analyzer"] = function()
+    --[[ local rust_analyzer_opts = require("user.lsp.settings.rust_analyzer") ]]
+    --[[ require("lspconfig").rust_analyzer.setup( ]]
+    --[[   vim.tbl_deep_extend("force", rust_analyzer_opts, opts) ]]
+    --[[ ) ]]
+    require("rust-tools").setup({
+      server = {
+        on_attach = on_attach,
+        --[[ capabilities ]]
+      },
+    })
+  end,
 })

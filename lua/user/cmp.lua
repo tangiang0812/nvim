@@ -10,10 +10,10 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
+--[[ local check_backspace = function() ]]
+--[[   local col = vim.fn.col "." - 1 ]]
+--[[   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ]]
+--[[ end ]]
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -66,14 +66,14 @@ cmp.setup {
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-        --[[ elseif luasnip.expand_or_jumpable() then ]]
-        --[[ 	luasnip.expand_or_jump() ]]
-      elseif luasnip.jumpable(1) then
+      --[[ if cmp.visible() then ]]
+      --[[   cmp.select_next_item() ]]
+      --[[ elseif luasnip.expand_or_jumpable() then ]]
+      --[[ 	luasnip.expand_or_jump() ]]
+      if luasnip.jumpable(1) then
         luasnip.jump(1)
-      elseif check_backspace() then
-        fallback()
+        --[[ elseif check_backspace() then ]]
+        --[[   fallback() ]]
       else
         fallback()
       end
@@ -82,9 +82,9 @@ cmp.setup {
       "s",
     }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+      --[[ if cmp.visible() then ]]
+      --[[   cmp.select_prev_item() ]]
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
@@ -130,9 +130,9 @@ cmp.setup {
       --[[ winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None", ]]
     })
   },
-  experimental = {
-    ghost_text = true,
-  },
+  --[[ experimental = { ]]
+  --[[   ghost_text = true, ]]
+  --[[ }, ]]
 }
 
 cmp.setup.cmdline(':', {
@@ -144,30 +144,30 @@ cmp.setup.cmdline(':', {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-        --[[ elseif luasnip.expand_or_jumpable() then ]]
-        --[[ 	luasnip.expand_or_jump() ]]
-      elseif check_backspace() then
-        fallback()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "c",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "c",
-    }),
+    --[[ ["<Tab>"] = cmp.mapping(function(fallback) ]]
+    --[[   if cmp.visible() then ]]
+    --[[     cmp.select_next_item() ]]
+    --[[   elseif luasnip.expand_or_jumpable() then ]]
+    --[[     luasnip.expand_or_jump() ]]
+    --[[   elseif check_backspace() then ]]
+    --[[     fallback() ]]
+    --[[   else ]]
+    --[[     fallback() ]]
+    --[[   end ]]
+    --[[ end, { ]]
+    --[[   "i", ]]
+    --[[   "c", ]]
+    --[[ }), ]]
+    --[[ ["<S-Tab>"] = cmp.mapping(function(fallback) ]]
+    --[[   if cmp.visible() then ]]
+    --[[     cmp.select_prev_item() ]]
+    --[[   else ]]
+    --[[     fallback() ]]
+    --[[   end ]]
+    --[[ end, { ]]
+    --[[   "i", ]]
+    --[[   "c", ]]
+    --[[ }), ]]
   },
   sources = cmp.config.sources({
     { name = 'path' }

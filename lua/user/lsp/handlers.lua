@@ -26,8 +26,6 @@ M.setup = function()
       style = "minimal",
       border = "rounded",
       source = "always",
-      -- header = "",
-      -- prefix = "",
     },
   }
 
@@ -46,7 +44,9 @@ end
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  -- if client.resolved_capabilities.document_highlight then
+  --[[ if client.server_capabilities.document_highligh then ]]
+  if client.server_capabilities.documentHighlightProvider then
     --[[ vim.api.nvim_create_augroup('lsp_document_highlight', {}) ]]
     --[[ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, { ]]
     --[[ 	group = 'lsp_document_highlight', ]]
@@ -72,6 +72,18 @@ local function lsp_highlight_document(client)
   end
 end
 
+_G.lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      -- apply whatever logic you want (in this example, we'll only use null-ls)
+      --[[ return client.name == "null-ls" ]]
+      return client.name ~= "tsserver" and client.name ~= "html"
+      --[[ return true ]]
+    end,
+    bufnr = bufnr or 0,
+  })
+end
+
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -93,39 +105,20 @@ local function lsp_keymaps(bufnr)
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-end
-
-local function lsp_auto_format(client)
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-    vim.api.nvim_command [[augroup END]]
-  end
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-_>", "<cmd>lua lsp_formatting()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
-  -- vim.notify(client.name .. " starting...")
-  -- TODO: refactor this into a method that checks if string in list
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false -- Resolving conflict this way is not recommended and can lead to bugs.
-  end
-  if client.name == "html" then
-    client.resolved_capabilities.document_formatting = false
-  end
-  lsp_auto_format(client)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
   return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
--- M.capabilities = cmp_nvim_lsp.default_capabilities()
+M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 return M

@@ -16,9 +16,9 @@ configs.setup({
   --[[ autopairs = { ]]
   --[[ 	enable = true, ]]
   --[[ }, ]]
-  autotag = {
-    enable = true,
-  },
+  --[[ autotag = { ]]
+  --[[   enable = true, ]]
+  --[[ }, ]]
   indent = { enable = false }, -- { disable = { ... } } list of languages what will be disabled
   context_commentstring = {
     enable = true,

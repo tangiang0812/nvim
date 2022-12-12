@@ -6,6 +6,9 @@ end
 lualine.setup({
   options = {
     ignore_focus = { "NvimTree", },
+    refresh = {
+      statusline = 350,
+    }
   },
   always_devide_middle = true,
   sections = {

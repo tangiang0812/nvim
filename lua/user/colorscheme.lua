@@ -7,6 +7,7 @@ end
 
 tokyonight.setup({
   transparent = true,
+  --[[ transparent = not vim.g.neovide and true or false, ]]
   styles = {
     sidebars = "transparent",
     floats = "transparent"

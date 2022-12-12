@@ -56,6 +56,13 @@ dashboard.custom_center = {
   { icon = ' ', desc = '  Config             ', action = 'edit ~/.config/nvim/init.lua' }
 }
 -- dashboard.custom_footer = { 'Do one thing, do it well - Unix Philosophy' }
-dashboard.header_pad = 2
-dashboard.center_pad = 2
-dashboard.footer_pad = 2
+dashboard.header_pad    = 2
+dashboard.center_pad    = 2
+dashboard.footer_pad    = 2
+
+--[[ if (vim.g.neovide) ]]
+--[[ then ]]
+--[[   dashboard.hide_statusline = false -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer ]]
+--[[   dashboard.hide_tabline    = false -- boolean default is true.it will hide tabline in dashboard buffer and auto open in other buffer ]]
+--[[   dashboard.hide_winbar     = false ]]
+--[[ end ]]

@@ -13,6 +13,19 @@ tokyonight.setup({
     floats = "transparent"
   },
   lualine_bold = true,
+  on_highlights = function(highlights, colors)
+    highlights.LineNr = {
+      fg = colors.blue
+    }
+    highlights.CursorLineNr = {
+      fg = colors.orange,
+      bold = true
+    }
+    highlights.NvimTreeIndentMarker = {
+      fg = colors.blue,
+      bold = true
+    }
+  end,
 })
 
 local status_ok2, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)

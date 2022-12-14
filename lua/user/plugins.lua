@@ -92,6 +92,7 @@ return packer.startup(function(use)
     tag = "0.3.*",
   })
   use({ "rcarriga/nvim-dap-ui" })
+  use({ "theHamsta/nvim-dap-virtual-text" })
 
   -- LSP
   use({ "neovim/nvim-lspconfig" }) -- enable LSP

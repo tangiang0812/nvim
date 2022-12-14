@@ -37,7 +37,13 @@ end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
---[[ local Terminal = require("toggleterm.terminal").Terminal ]]
+local Terminal = require("toggleterm.terminal").Terminal
+local setup_codelldb = Terminal:new({ cmd = "setup-codelldb", hidden = true })
+
+function _CODELLDB_TOGGLE()
+	setup_codelldb:toggle()
+end
+
 --[[ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true }) ]]
 --[[]]
 --[[ function _LAZYGIT_TOGGLE() ]]

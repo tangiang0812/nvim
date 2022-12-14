@@ -48,7 +48,7 @@ M.setup = function()
   dap.defaults.fallback.focus_terminal = true
 
   dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
+    dapui.open({ reset = true })
   end
 
   dap.listeners.before.event_terminated["dapui_config"] = function()
@@ -65,7 +65,8 @@ end
 --[[   return ]]
 --[[ end ]]
 
-M.on_attach = function(_, bufnr)
+--[[ M.on_attach = function(_, bufnr) ]]
+M.on_attach = function(_, _)
   --[[ local opts = { noremap = true, silent = true } ]]
   -- Hover actions
   --[[ vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr }) ]]
@@ -82,7 +83,8 @@ M.on_attach = function(_, bufnr)
 
   vim.keymap.set("n", '<leader>db', function() dap.toggle_breakpoint() end)
   --[[ vim.keymap.set("n", '<leader>du', function() dapui.toggle({ reset = true }) end) ]]
-  vim.keymap.set("n", '<leader>du', function() dapui.toggle() end)
+  vim.keymap.set("n", '<leader>du', function() dapui.toggle({ reset = true }) end)
+  vim.keymap.set("v", '<M-k>', function() dapui.eval() end)
 
 end
 

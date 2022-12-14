@@ -26,6 +26,9 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- Debug Terminal
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+
 -- NvimTreeToggle
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
@@ -34,7 +37,7 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>p", "<cmd>Telescope help_tags<cr>", opts)
-keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
+--[[ keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts) ]]
 
 -- Spawn terminal
 -- keymap("n", "<C-\\>", ":! bash -c st &<CR>", opts)

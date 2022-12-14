@@ -21,13 +21,21 @@ end
 
 mason_lspconfig.setup()
 
-local on_attach = require("user.lsp.handlers").on_attach
-local capabilities = require("user.lsp.handlers").capabilities
+local lsp_on_attach = require("user.lsp.handlers").on_attach
+local lsp_capabilities = require("user.lsp.handlers").capabilities
 
 local opts = {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = lsp_on_attach,
+  capabilities = lsp_capabilities,
 }
+
+local dap_on_attach = require("user.dap.handlers").on_attach
+local dap_dap = require("user.dap.handlers").dap
+
+local status_ok3, rt = pcall(require, "rust-tools")
+if not status_ok3 then
+  return
+end
 
 mason_lspconfig.setup_handlers({
   function(server_name)
@@ -62,12 +70,17 @@ mason_lspconfig.setup_handlers({
     --[[ require("lspconfig").rust_analyzer.setup( ]]
     --[[   vim.tbl_deep_extend("force", rust_analyzer_opts, opts) ]]
     --[[ ) ]]
-    require("rust-tools").setup({
+    require("user.dap.settings.rust")
+    rt.setup({
       server = {
-        on_attach = on_attach,
-        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          lsp_on_attach(client,bufnr)
+          dap_on_attach(client, bufnr)
+        end,
+        capabilities = lsp_capabilities,
+        standalone = false,
       },
-      dap = require("user.lsp.settings.rust")
+      dap = dap_dap,
     })
   end,
 })

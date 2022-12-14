@@ -88,7 +88,9 @@ return packer.startup(function(use)
   }
 
   -- Debug
-  use({ "mfussenegger/nvim-dap" })
+  use({ "mfussenegger/nvim-dap",
+    tag = "0.3.*",
+  })
   use({ "rcarriga/nvim-dap-ui" })
 
   -- LSP

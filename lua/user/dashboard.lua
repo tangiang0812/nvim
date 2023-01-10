@@ -51,9 +51,10 @@ dashboard.preview_file_width = 70
 
 dashboard.custom_center = {
   { icon = ' ', desc = '  Find File          ', action = 'Telescope find_files' },
-  { icon = ' ', desc = '  Search Text        ', action = 'Telescope live_grep' },
   { icon = ' ', desc = '  Recent Files       ', action = 'Telescope oldfiles' },
-  { icon = ' ', desc = '  Config             ', action = 'edit ~/.config/nvim/init.lua' }
+  { icon = ' ', desc = '  Search Text        ', action = 'Telescope live_grep' },
+  { icon = '鈴', desc = '  Lazy               ', action = 'Lazy' },
+  { icon = '◍ ', desc = '  Mason              ', action = 'Mason' },
 }
 -- dashboard.custom_footer = { 'Do one thing, do it well - Unix Philosophy' }
 dashboard.header_pad    = 2

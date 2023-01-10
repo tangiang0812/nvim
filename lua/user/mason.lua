@@ -78,7 +78,7 @@ mason_lspconfig.setup_handlers({
           dap_on_attach(client, bufnr)
         end,
         capabilities = lsp_capabilities,
-        standalone = false,
+        --[[ standalone = false, ]]
       },
       dap = dap_dap,
     })

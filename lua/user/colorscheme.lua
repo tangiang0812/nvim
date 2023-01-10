@@ -6,9 +6,11 @@ if not status_ok then
 end
 
 tokyonight.setup({
-  transparent = true,
-  --[[ transparent = not vim.g.neovide and true or false, ]]
+  --[[ transparent = true, ]]
+  transparent = not vim.g.neovide and true or false,
   styles = {
+    comments = { italic = true },
+    keywords = { italic = true },
     sidebars = "transparent",
     floats = "transparent"
   },

@@ -18,7 +18,7 @@ npairs.setup({
     pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
     offset = 0, -- Offset from pattern match
     end_key = "$",
-    keys = "qwertyuiopzxcvbnmasdfghjkl",
+    keys = "qwe tyuiopzxcvbnmasdfghjkl",
     check_comma = true,
     highlight = "PmenuSel",
     highlight_grey = "LineNr",
@@ -33,9 +33,3 @@ end
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 
 
-local status_ok2, ntags = pcall(require, "nvim-ts-autotag")
-if not status_ok2 then
-  return
-end
-
-ntags.setup()

@@ -32,11 +32,6 @@ local opts = {
 local dap_on_attach = require("user.dap.handlers").on_attach
 local dap_dap = require("user.dap.handlers").dap
 
-local status_ok3, rt = pcall(require, "rust-tools")
-if not status_ok3 then
-  return
-end
-
 mason_lspconfig.setup_handlers({
   function(server_name)
     require("lspconfig")[server_name].setup(opts)
@@ -70,11 +65,18 @@ mason_lspconfig.setup_handlers({
     --[[ require("lspconfig").rust_analyzer.setup( ]]
     --[[   vim.tbl_deep_extend("force", rust_analyzer_opts, opts) ]]
     --[[ ) ]]
+
+    local status_ok3, rt = pcall(require, "rust-tools")
+    if not status_ok3 then
+      return
+    end
+
     require("user.dap.settings.rust")
+
     rt.setup({
       server = {
         on_attach = function(client, bufnr)
-          lsp_on_attach(client,bufnr)
+          lsp_on_attach(client, bufnr)
           dap_on_attach(client, bufnr)
         end,
         capabilities = lsp_capabilities,

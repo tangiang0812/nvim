@@ -26,12 +26,44 @@ end
 lazy.setup({
   -- My plugins here
 
-  "wbthomason/packer.nvim", -- Have packer manage itself
   "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
   "numToStr/Comment.nvim",
-  "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
-  "windwp/nvim-ts-autotag",
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  {
+    "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+    event = "InsertEnter",
+    config = function()
+      require("user.autopairs")
+    end
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+      'xml',
+      'php',
+      'markdown',
+      'glimmer', 'handlebars', 'hbs'
+    }
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    ft = {
+      "javascript",
+      "typescript",
+      "tsx",
+      "css",
+      "scss",
+      "php",
+      "html",
+      "svelte",
+      "vue",
+      "astro",
+      "handlebars",
+      "glimmer",
+      "graphql",
+      "lua",
+    }
+  },
   "kyazdani42/nvim-web-devicons",
 
   -- Rust
@@ -56,13 +88,22 @@ lazy.setup({
   "hrsh7th/cmp-nvim-lsp-signature-help",
   {
     "akinsho/toggleterm.nvim",
+    cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+    keys = { "<C-\\>", "<leader>\\" },
+    config = function()
+      require("user.toggleterm")
+    end
     --[[ tag = "v2.*", ]]
   },
 
   -- NVimtree
   {
     "kyazdani42/nvim-tree.lua",
-    tag = "nightly" -- optional, updated every week. (see issue #1193)
+    tag = "nightly", -- optional, updated every week. (see issue #1193)
+    cmd = "NvimTreeToggle",
+    config = function()
+      require("user.nvimtree")
+    end
   },
 
   -- Debug
@@ -87,14 +128,26 @@ lazy.setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ':TSUpdate',
+    event = "BufWinEnter",
+    config = function()
+      require("user.treesitter")
+    end,
   },
 
   -- Telescope
-  "nvim-telescope/telescope.nvim",
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
+    config = function()
+      require("user.telescope")
+    end
+  },
   {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    lazy = true
     --[[ build = "make" ]]
 
   },
@@ -115,31 +168,31 @@ lazy.setup({
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
 },
-{
-  ui = {
-    border = "rounded",
-    icons = {
-      cmd = " ",
-      config = "",
-      event = "",
-      ft = " ",
-      init = " ",
-      import = " ",
-      keys = " ",
-      lazy = "鈴 ",
-      loaded = "●",
-      not_loaded = "○",
-      plugin = " ",
-      runtime = " ",
-      source = " ",
-      start = "",
-      task = "✔ ",
-      list = {
-        "●",
-        "➜",
-        "★",
-        "‒",
+  {
+    ui = {
+      border = "rounded",
+      icons = {
+        cmd = " ",
+        config = "",
+        event = "",
+        ft = " ",
+        init = " ",
+        import = " ",
+        keys = " ",
+        lazy = "鈴 ",
+        loaded = "●",
+        not_loaded = "○",
+        plugin = " ",
+        runtime = " ",
+        source = " ",
+        start = "",
+        task = "✔ ",
+        list = {
+          "●",
+          "➜",
+          "★",
+          "‒",
+        },
       },
-    },
-  }
-})
+    }
+  })
